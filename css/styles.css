@@ -511,3 +511,41 @@ main {
         grid-template-columns: 1fr;
     }
 }
+
+/* =========================
+   VERY SMALL PHONES
+========================= */
+
+@media (max-width: 420px) {
+
+    /* FOLDER VIEW */
+    .portfolio-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    /* IMAGE VIEW */
+    .portfolio-grid-inner {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 14px;
+    }
+
+    .thumb {
+        height: 110px;
+    }
+
+    .menu {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+
+    .menu a {
+        font-size: 16px;
+        padding: 6px 10px;
+        white-space: nowrap;
+    }
+
+    .menu a::before {
+        border-radius: 30px; /* keep your pill look */
+    }
+}
