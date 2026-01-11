@@ -46,7 +46,18 @@
             files.slice(0, 3).forEach(file => {
                 const thumb = document.createElement('div');
                 thumb.className = 'thumb';
-                thumb.style.backgroundImage = `url(../photos/${file})`;
+
+                const loader = document.createElement('div');
+                loader.className = 'loader';
+                thumb.appendChild(loader);
+
+                const img = new Image();
+                img.src = `../photos/${file}`;
+                img.onload = () => {
+                    thumb.style.backgroundImage = `url(${img.src})`;
+                    loader.remove();
+                };
+
                 stack.appendChild(thumb);
             });
 
@@ -82,7 +93,19 @@
 
             const thumb = document.createElement('div');
             thumb.className = 'thumb';
-            thumb.style.backgroundImage = `url(../photos/${file})`;
+
+            const loader = document.createElement('div');
+            loader.className = 'loader';
+            thumb.appendChild(loader);
+
+            const src = `../photos/${file}`; // ✅ DEFINE FIRST
+
+            const img = new Image();
+            img.src = src;
+            img.onload = () => {
+                thumb.style.backgroundImage = `url(${img.src})`;
+                loader.remove();
+            };
 
             const btn = document.createElement('div');
             btn.className = 'view-btn';
@@ -95,8 +118,6 @@
                         stroke="white" stroke-width="2"/>
                 </svg>
             `;
-
-            const src = `../photos/${file}`;
 
             btn.addEventListener('click', e => {
                 e.stopPropagation();
